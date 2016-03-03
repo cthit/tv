@@ -1,4 +1,4 @@
-A angularjs application with a nodejs backend.
+An angularjs application with a nodejs backend.
 ##Dependencies
 `npm`
 ##Setup
