@@ -19,7 +19,6 @@ app.use(methodOverride());
 app.get('/api/hubbit', function(req, res) {
   var http = require('https');
 
-  //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
   var options = {
     host: 'hubbit.chalmers.it',
     path: '/get_stats.json?timeframe=day',
@@ -46,7 +45,7 @@ app.get('/api/hubbit', function(req, res) {
 
 // application -------------------------------------------------------------
 app.get('*', function(req, res) {
-    res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+    res.sendfile('./public/index.html'); // load the single view file
 });
 
 // listen (start app with node server.js) ======================================

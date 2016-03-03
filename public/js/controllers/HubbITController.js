@@ -1,5 +1,5 @@
 app.controller('HubbITController', function($scope, $http) {
-    // when landing on the page, get all todos and show them
+    // get hubbit api 
     $http.get('/api/hubbit')
         .success(function(data) {
             $scope.stats = data;
