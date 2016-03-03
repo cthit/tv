@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers/HubbITController.js"></script>
+  </head>
+<body ng-app="info">
+  <div class="stat-container" ng-controller="HubbITController">
+    <div class="single-stat" ng-repeat="stat in stats">
+      <ul style="list-style-type:none;">
+        <li style="display:inline-block;" >{{stat.nick}}</li>
+        <li style="display:inline-block;" >{{stat.score}}</li>
+      </ul>
+    </div>
+  </div>
+  <div ng-controller="VasttrafikController">
+  </div>
+</body>
