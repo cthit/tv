@@ -18,29 +18,43 @@ app.use(methodOverride());
 // get daily stats hubbit
 app.get('/api/hubbit', function(req, res) {
   var http = require('https');
-
-  //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
   var options = {
     host: 'hubbit.chalmers.it',
     path: '/get_stats.json?timeframe=day',
     port: '443',
     headers: {'Authorization': 'Token token=""'}
   };
-
   callback = function(response) {
     var str = '';
-
     //another chunk of data has been recieved, so append it to `str`
     response.on('data', function (chunk) {
       str += chunk;
     });
-
     //the whole response has been recieved, so we just print it out here
     response.on('end', function () {
       res.send(str);
     });
   }
-
+  http.request(options, callback).end();
+});
+// get schedule
+app.get('/api/schedule', function(req, res) {
+  var http = require('https');
+  var options = {
+    host: 'se.timeedit.net',
+    path: '/web/chalmers/db1/public/ri16X165X44Z08Q5Z36g4Y10y1006Y48504gQY5Q56753641Y78157551390Q448XY7.json',
+  };
+  callback = function(response) {
+    var str = '';
+    //another chunk of data has been recieved, so append it to `str`
+    response.on('data', function (chunk) {
+      str += chunk;
+    });
+    //the whole response has been recieved, so we just print it out here
+    response.on('end', function () {
+      res.send(str);
+    });
+  }
   http.request(options, callback).end();
 });
 
