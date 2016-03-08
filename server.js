@@ -1,4 +1,16 @@
 // set up ========================
+//Secrets
+var fs = require("fs")
+var fileName = "./secrets.json"
+var config
+try {
+  config = require(fileName)
+}
+catch (err) {
+  config = {}
+  console.log("unable to read file '" + fileName + "': ", err)
+  console.log("see secret-config-sample.json for an example")
+}
 var express  = require('express');
 var app      = express();                               // create our app w/ express
 var morgan = require('morgan');             // log requests to the console (express4)
@@ -23,7 +35,7 @@ app.get('/api/hubbit', function(req, res) {
     host: 'hubbit.chalmers.it',
     path: '/get_stats.json?timeframe=day',
     port: '443',
-    headers: {'Authorization': 'Token token=""'}
+    headers: {'Authorization': 'Token token="'+config.hubbit+'"'}
   };
 
   callback = function(response) {
