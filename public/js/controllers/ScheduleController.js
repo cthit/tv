@@ -5,8 +5,36 @@ app.controller('ScheduleController', function($scope, $http) {
     $http.get('/api/schedule')
         .success(function(data) {
             $scope.schedule = data;
+            calendarSetup();
         })
         .error(function(data) {
             console.log('Error: ' + data);
         });
-});
+      /**
+      * Sets up the calendar with values from the schedule, formats these so the calendar can understand them.
+      */
+    function calendarSetup(){
+      var events_fullcalender_format = [];
+      var reservations = $scope.schedule.reservations;
+
+      for (i = 0; i < reservations.length; i++) {
+        events_fullcalender_format.push({
+          id: reservations[i].id,
+          title: reservations[i].columns[0],
+          start: reservations[i].startdate + "T" + reservations[i].starttime + "Z",
+          end: reservations[i].enddate + "T" + reservations[i].endtime + "Z",
+        })
+      }
+      console.log(events_fullcalender_format);
+      $('#calendar').fullCalendar({
+        events: events_fullcalender_format,
+        defaultView: 'agendaDay',
+        minTime: '08:00',
+        maxTime: '18:00',
+        smallTimeFormat: 'HH:mm',
+        timeFormat: {
+           agenda: 'HH:mm{ - HH:mm}'
+        }
+      });
+    }
+  });

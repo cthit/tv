@@ -43,7 +43,7 @@ app.get('/api/schedule', function(req, res) {
   var http = require('https');
   var options = {
     host: 'se.timeedit.net',
-    path: '/web/chalmers/db1/public/ri16X165X44Z08Q5Z36g4Y10y1006Y48504gQY5Q56753641Y78157551390Q448XY7.json',
+    path: '/web/chalmers/db1/public/ri15YXQ3041Z57Qv8X034156y8Y470155Y97Y1gQ0075X54Z14083Y5487Q7.json',
   };
   callback = function(response) {
     var str = '';
