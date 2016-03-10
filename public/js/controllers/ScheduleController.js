@@ -21,6 +21,9 @@ app.controller('ScheduleController', function($scope, $http) {
         events_fullcalender_format.push({
           id: reservations[i].id,
           title: reservations[i].columns[0],
+          description: "Location: " + reservations[i].columns[1] +
+              "</br>Type: " + reservations[i].columns[2] +
+              "</br>Classes: " + reservations[i].columns[5],
           start: reservations[i].startdate + "T" + reservations[i].starttime + "Z",
           end: reservations[i].enddate + "T" + reservations[i].endtime + "Z",
         })
@@ -31,9 +34,13 @@ app.controller('ScheduleController', function($scope, $http) {
         defaultView: 'agendaDay',
         minTime: '08:00',
         maxTime: '18:00',
+        slotEventOverlap:false,
         smallTimeFormat: 'HH:mm',
         timeFormat: {
-           agenda: 'HH:mm{ - HH:mm}'
+           agenda: 'HH:mm'
+        },
+        eventRender: function(event, element) {
+          element.find('.fc-title').append("<br/>" + event.description);
         }
       });
     }
