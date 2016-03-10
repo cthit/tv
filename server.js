@@ -20,6 +20,7 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 // configuration =================
 
 app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
+app.use('/bower_components',  express.static(__dirname + '/bower_components')); //include bower_components
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -37,21 +38,37 @@ app.get('/api/hubbit', function(req, res) {
     port: '443',
     headers: {'Authorization': 'Token token="'+config.hubbit+'"'}
   };
-
   callback = function(response) {
     var str = '';
-
     //another chunk of data has been recieved, so append it to `str`
     response.on('data', function (chunk) {
       str += chunk;
     });
-
     //the whole response has been recieved, so we just print it out here
     response.on('end', function () {
       res.send(str);
     });
   }
-
+  http.request(options, callback).end();
+});
+// get schedule
+app.get('/api/schedule', function(req, res) {
+  var http = require('https');
+  var options = {
+    host: 'se.timeedit.net',
+    path: '/web/chalmers/db1/public/ri15YXQ3041Z57Qv8X034156y8Y470155Y97Y1gQ0075X54Z14083Y5487Q7.json',
+  };
+  callback = function(response) {
+    var str = '';
+    //another chunk of data has been recieved, so append it to `str`
+    response.on('data', function (chunk) {
+      str += chunk;
+    });
+    //the whole response has been recieved, so we just print it out here
+    response.on('end', function () {
+      res.send(str);
+    });
+  }
   http.request(options, callback).end();
 });
 

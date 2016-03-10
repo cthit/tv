@@ -6,6 +6,7 @@
   "author": "digIT",
   "dependencies": {
     "body-parser": "~1.5.2",
+    "bower": "^1.7.7",
     "express": "~4.7.2",
     "http": "0.0.0",
     "https": "^1.0.0",
