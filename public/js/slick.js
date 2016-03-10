@@ -1,7 +1,9 @@
 $(document).ready(function(){
   //Initialize slick
   $('.main-container').slick({
-    infinite: true
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 10000 //autoslides every 10 seconds
   });
   //To make sure buttons dont "get stuck" in hover mode when pressed
   $("button").mouseup(function(){
