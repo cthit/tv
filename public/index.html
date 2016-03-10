@@ -16,17 +16,31 @@
     <link rel='stylesheet' href='/bower_components/fullcalendar/dist/fullcalendar.css' />
     <script src='/bower_components/moment/moment.js'></script>
     <script src='/bower_components/fullcalendar/dist/fullcalendar.js'></script>
+    <!-- Slick -->
+    <script type="text/javascript" src="/bower_components/slick-carousel/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bower_components/slick-carousel/slick/slick.css"/>
   </head>
 <body ng-app="info">
-  <div class="stat-container" ng-controller="HubbITController">
-    <div class="single-stat" ng-repeat="stat in stats">
-      <ul style="list-style-type:none;">
-        <li style="display:inline-block;" >{{stat.nick}}</li>
-        <li style="display:inline-block;" >{{stat.score}}</li>
-      </ul>
+  <div class="main-container">
+    <div class="stat-container" ng-controller="HubbITController">
+      <div class="single-stat" ng-repeat="stat in stats">
+        <ul style="list-style-type:none;">
+          <li style="display:inline-block;" >{{stat.nick}}</li>
+          <li style="display:inline-block;" >{{stat.score}}</li>
+        </ul>
+      </div>
+    </div>
+    <div id="schedule" class="schedule-container" ng-controller="ScheduleController">
+      <div id="calendar"></div>
     </div>
   </div>
-  <div id="schedule" class="schedule-container" ng-controller="ScheduleController">
-    <div id="calendar"></div>
-  </div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.main-container').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      });
+    });
+  </script>
 </body>
