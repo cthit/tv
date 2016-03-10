@@ -5,6 +5,7 @@ Please add all the features you would like to see on the informationscreen as is
 An angularjs application with a nodejs backend.
 ##Dependencies
 `npm`
+`nodejs`
 ##Setup
 ```bash
 npm install
