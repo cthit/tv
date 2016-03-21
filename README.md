@@ -18,6 +18,8 @@ Get secrets.json file fetch from wiki or create temp file with following content
 
 ```bash
 npm install
+
+bower install
 ```
 ##Running
 Either get `nodemon` by running `sudo npm install nodemon -g` which will automatically restart the server once files has been changed or simply run `npm start`.
