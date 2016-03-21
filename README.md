@@ -5,8 +5,17 @@ Please add all the features you would like to see on the informationscreen as is
 An angularjs application with a nodejs backend.
 ##Dependencies
 `npm`
+
 `nodejs`
 ##Setup
+Get secrets.json file fetch from wiki or create temp file with following content
+
+```
+{
+  "hubbit":"111notactualapikey111"
+}
+```
+
 ```bash
 npm install
 ```
