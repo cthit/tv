@@ -1,7 +1,7 @@
 {
-  "name": "info-screen",
+  "name": "tv",
   "version": "0.0.0",
-  "description": "Simple app for info-screen",
+  "description": "Simple app for the tv in hubben",
   "main": "server.js",
   "author": "digIT",
   "dependencies": {
