@@ -37,3 +37,6 @@ bower_components
 .node_repl_history
 #Secrets
 secrets.json
+
+#Idea (WebStorm)
+.idea/
