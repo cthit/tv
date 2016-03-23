@@ -1,0 +1,17 @@
+/*
+  Main stylesheet file used for importing every other stylesheet.
+  (Removes a cluster of css files from the index.html)
+*/
+
+@import "calendar.css";
+@import "slick.css";
+
+.single-stat {
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+}
