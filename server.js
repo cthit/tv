@@ -52,29 +52,54 @@ app.get('/api/hubbit', function(req, res) {
   http.request(options, callback).end();
 });
 
-app.get('/api/vasttrafik', function(req, res) {
+app.get('/api/vasttrafik-chalmers', function(req, res) {
   var http = require('https');
 
   var options = {
     host: 'api.vasttrafik.se',
-    path: '/bin/rest.exe/v2/departureBoard?id=9021014001960000&date=2016-03-29&time=20%3A30&format=json',
+    path: '/token?grant_type=client_credentials',
+    method: 'POST',
     port: '443',
-    headers: {'Authorization': 'Bearer ' + config.vasttrafik}
+    headers: {'Authorization': 'Basic ' + config.vasttrafik,
+      'Content-Type': 'application/x-www-form-urlencoded'}
   };
 
-  callback = function(response) {
-    var str = '';
+  var post_req = http.request(options, function(resp) {
+    var accessKey = '';
 
-    response.on('data', function(chunk) {
-      str += chunk;
+    resp.on('data', function(chunk) {
+      accessKey += chunk;
     });
 
-    response.on('end', function() {
-      res.send(str);
+    resp.on('end', function() {
+      getDepartures(JSON.parse(accessKey).access_token);
     });
-  };
+  });
 
-  http.request(options, callback).end();
+
+  post_req.end();
+  function getDepartures(accessToken) {
+    var options = {
+      host: 'api.vasttrafik.se',
+      path: '/bin/rest.exe/v2/departureBoard?id=9021014001960000&date=2016-03-29&time=20%3A30&timeSpan=60&maxDeparturesPerLine=1&format=json',
+      port: '443',
+      headers: {'Authorization': 'Bearer ' + accessToken}
+    };
+
+    callback = function(response) {
+      var str = '';
+
+      response.on('data', function(chunk) {
+        str += chunk;
+      });
+
+      response.on('end', function() {
+        res.send(str);
+      });
+    };
+
+    http.request(options, callback).end();
+  }
 });
 
 // get schedule
