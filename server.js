@@ -1,15 +1,15 @@
 // set up ========================
 //Secrets
-var fs = require("fs")
-var fileName = "./secrets.json"
-var config
+var fs = require("fs");
+var fileName = "./secrets.json";
+var config;
 try {
   config = require(fileName)
 }
 catch (err) {
-  config = {}
-  console.log("unable to read file '" + fileName + "': ", err)
-  console.log("see secret-config-sample.json for an example")
+  config = {};
+  console.log("unable to read file '" + fileName + "': ", err);
+  console.log("see secret-config-sample.json for an example");
 }
 var express  = require('express');
 var app      = express();                               // create our app w/ express
@@ -48,9 +48,35 @@ app.get('/api/hubbit', function(req, res) {
     response.on('end', function () {
       res.send(str);
     });
-  }
+  };
   http.request(options, callback).end();
 });
+
+app.get('/api/vasttrafik', function(req, res) {
+  var http = require('https');
+
+  var options = {
+    host: 'api.vasttrafik.se',
+    path: '/bin/rest.exe/v2/departureBoard?id=9021014001960000&date=2016-03-29&time=20%3A30&format=json',
+    port: '443',
+    headers: {'Authorization': 'Bearer ' + config.vasttrafik}
+  };
+
+  callback = function(response) {
+    var str = '';
+
+    response.on('data', function(chunk) {
+      str += chunk;
+    });
+
+    response.on('end', function() {
+      res.send(str);
+    });
+  };
+
+  http.request(options, callback).end();
+});
+
 // get schedule
 app.get('/api/schedule', function(req, res) {
   var http = require('https');
