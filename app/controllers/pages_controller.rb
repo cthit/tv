@@ -4,11 +4,11 @@ class PagesController < ApplicationController
 
     # TODO: create a new post from the params
     def create
-        year = params[:page][:'endOn(1i)'].to_i
-        month = params[:page][:'endOn(2i)'].to_i
-        day = params[:page][:'endOn(3i)'].to_i
-        hour = params[:page][:'endOn(4i)'].to_i
-        min = params[:page][:'endOn(5i)'].to_i
+        year = params[:page][:'end_on(1i)'].to_i
+        month = params[:page][:'end_on(2i)'].to_i
+        day = params[:page][:'end_on(3i)'].to_i
+        hour = params[:page][:'end_on(4i)'].to_i
+        min = params[:page][:'end_on(5i)'].to_i
         dateTime = Time.zone.local(year, month, day, hour, min)
         render plain: dateTime
         # exceptDate = params[:page]

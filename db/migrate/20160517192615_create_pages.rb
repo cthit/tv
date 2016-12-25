@@ -3,8 +3,8 @@ class CreatePages < ActiveRecord::Migration
     create_table :pages do |t|
       t.text :url
       t.string :owner
-      t.datetime :startOn
-      t.datetime :endOn
+      t.datetime :start_on
+      t.datetime :end_on
 
       t.timestamps
     end
